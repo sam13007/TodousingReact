@@ -1,0 +1,16 @@
+.addtask-container {
+  border: 1px solid rgb(223, 223, 223);
+  width: 60%;
+  margin: auto;
+  padding: 2rem 3rem;
+  border-radius: 20px;
+  background-color: #f6f6f6;
+  box-shadow: 0 2px 2px 0 rgba(8, 8, 8, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.addtask-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}

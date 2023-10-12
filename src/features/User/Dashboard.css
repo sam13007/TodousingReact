@@ -1,0 +1,28 @@
+.draggable-context {
+  display: flex;
+}
+
+.draggle-column {
+  margin: 2rem;
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  min-height: 60vh;
+  flex-wrap: wrap;
+}
+
+.taskList {
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  background: #f3f3f3;
+  min-width: 341px;
+  border-radius: 5px;
+  padding: 15px 15px;
+  margin-right: 45px;
+  flex: 1;
+  height: 90%;
+
+  max-height: 90%;
+  overflow-y: scroll;
+}

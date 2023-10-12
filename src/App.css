@@ -1,0 +1,17 @@
+.App {
+  text-align: center;
+}
+
+.App::-webkit-scrollbar {
+  display: none;
+  overflow: hidden;
+}
+
+/* body {
+  overflow: hidden;
+} */
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
