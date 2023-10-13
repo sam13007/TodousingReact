@@ -5,15 +5,19 @@ import { Button, Container } from "@mui/material";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import SettingsPowerIcon from "@mui/icons-material/SettingsPower";
 import DeleteIcon from "@mui/icons-material/Delete";
-import AddTaskForm from "../../components/AddTaskForm";
-import { addTask, dragState, deleteTask } from "./TodoSlice";
-import TaskCard from "../../components/TaskCard";
+import AddTaskForm from "../../components/AddTaskForm/AddTaskForm";
+import { addTask, dragState, deleteTask } from "../../features/Todos/TodoSlice";
+import TaskCard from "../../components/TaskCard/TaskCard";
 import "./Dashboard.css";
 import dayjs from "dayjs";
 
 const priorityOptions = ["high", "medium", "low"];
 
 function Dashboard() {
+  const [value, setValue] = useState(priorityOptions[0]);
+  const [inputValue, setInputValue] = useState("");
+  const [taskName, setTaskname] = useState("");
+  const [dateValue, setDateValue] = useState(dayjs());
   const navigate = useNavigate();
   const email = localStorage.getItem("email");
   const dispatch = useDispatch();
@@ -25,11 +29,6 @@ function Dashboard() {
     userRegTasks.filter((task) => {
       return task.email === email;
     });
-
-  const [value, setValue] = useState(priorityOptions[0]);
-  const [inputValue, setInputValue] = useState("");
-  const [taskName, setTaskname] = useState("");
-  const [dateValue, setDateValue] = React.useState(dayjs());
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -131,14 +130,19 @@ function Dashboard() {
                       {...provided.droppableProps}
                       maxWidth="sm"
                     >
-                      <span>
+                      <div className="task-col-title">
                         {col.title} : {col.numberOfTask}
-                      </span>
+                      </div>
                       {userTasks
                         .filter((task) => col.id === task.stage)
                         .map((item, index) => {
                           return (
-                            <TaskCard key={index} item={item} index={index} />
+                            <TaskCard
+                              key={index}
+                              item={item}
+                              index={index}
+                              colId={col.id}
+                            />
                           );
                         })}
                       {provided.placeholder}

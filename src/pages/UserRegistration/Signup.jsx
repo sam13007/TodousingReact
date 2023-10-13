@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Box, Button } from "@mui/material";
-import { FormInputText } from "../../components/FormInput";
+import { FormInputText } from "../../components/FormInput/FormInput";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { signupUser, clearState } from "./UserSlice";
+import { signupUser, clearState } from "../../features/User/UserSlice";
 import toast, { Toaster } from "react-hot-toast";
 import "./Registration.css";
 
@@ -49,9 +49,8 @@ function Signup() {
               label={"Name"}
               type="text"
               rules={{
-                required: true,
+                required: { value: true, message: "This field can't be empty" },
               }}
-              required
             />
             <FormInputText
               name={"username"}
@@ -59,9 +58,8 @@ function Signup() {
               label={"Username"}
               type="text"
               rules={{
-                required: true,
+                required: { value: true, message: "This field can't be empty" },
               }}
-              required
             />
             <FormInputText
               name={"email"}
@@ -69,17 +67,23 @@ function Signup() {
               label={"Email"}
               type="text"
               rules={{
-                required: true,
-                pattern: /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/i,
+                required: { value: true, message: "This field can't be empty" },
+                pattern: {
+                  value: /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/i,
+                  message: "Enter a valid email ID",
+                },
               }}
-              required
             />
             <FormInputText
               name={"contact"}
               control={control}
               label={"Contact number"}
               rules={{
-                validate: (v) => v.length === 10,
+                validate: (value) => {
+                  if (value && value?.length !== 10) {
+                    return "Enter a valid contact number";
+                  }
+                },
               }}
             />
             <FormInputText
@@ -87,9 +91,8 @@ function Signup() {
               control={control}
               label={"Password"}
               type="password"
-              required
               rules={{
-                required: true,
+                required: { value: true, message: "This field can't be empty" },
                 minLength: { value: 8, message: "Enter a valid password" },
               }}
             />

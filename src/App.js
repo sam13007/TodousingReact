@@ -1,6 +1,7 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Login, Signup, Dashboard, ProtectedRoute } from "./features/User";
+import { Login, Signup, ProtectedRoute } from "./pages/UserRegistration";
+import { Dashboard } from "./pages/Dashboard";
 function App() {
   return (
     <div className="App" style={{ height: "100vh" }}>
@@ -22,7 +23,5 @@ function App() {
     </div>
   );
 }
-//https://usman-fake-api.herokuapp.com/api/users -signup
-//https://usman-fake-api.herokuapp.com/api/auth -Login
 
 export default App;

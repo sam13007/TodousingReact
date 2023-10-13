@@ -15,14 +15,14 @@ import {
   moveRight,
   moveLeft,
   editTaskName,
-} from "../features/User/TodoSlice";
+} from "../../features/Todos/TodoSlice";
 import { useDispatch } from "react-redux";
 import "./TaskCard.css";
 import dayjs from "dayjs";
 
 const priorityOptions = ["high", "medium", "low"];
 
-function TaskCard({ item, index }) {
+function TaskCard({ item, index, colId }) {
   const [edit, setEdit] = useState(false);
   const [editTask, setEditTask] = useState(item.taskName);
   const [editDateVal, setEditDateVal] = useState(dayjs());
@@ -62,7 +62,12 @@ function TaskCard({ item, index }) {
                   onChange={(e) => setEditTask(e.target.value)}
                 />
               ) : (
-                <p style={{ fontSize: "1.5em" }}>{item.taskName}</p>
+                <p
+                  style={{ fontSize: "1.5em" }}
+                  className={`task-title-${colId}`}
+                >
+                  {item.taskName}
+                </p>
               )}
 
               {edit ? (
@@ -152,7 +157,9 @@ function TaskCard({ item, index }) {
                 />
               </div>
             ) : (
-              <div className="task-dueDate">Due: {item.dueDate}</div>
+              <div className={`task-dueDate task-dueDate-${colId}`}>
+                Due: {item.dueDate}
+              </div>
             )}
           </div>
         </div>

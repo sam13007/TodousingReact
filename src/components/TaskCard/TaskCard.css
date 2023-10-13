@@ -1,7 +1,7 @@
 .task-info {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: flex-start;
   padding: 0 15px;
   min-height: 106px;
@@ -53,4 +53,12 @@
 .task-editForm {
   display: flex;
   gap: 0.5rem;
+}
+
+.task-title-3 {
+  text-decoration: line-through;
+}
+
+.task-dueDate-3 {
+  text-decoration: line-through;
 }

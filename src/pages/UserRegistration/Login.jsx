@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
-import { FormInputText } from "../../components/FormInput";
+import { FormInputText } from "../../components/FormInput/FormInput";
 import "./Registration.css";
 
 function Login() {
@@ -57,19 +57,20 @@ function Login() {
               label={"Email"}
               type="text"
               rules={{
-                required: true,
-                pattern: /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/i,
+                required: { value: true, message: "This field can't be empty" },
+                pattern: {
+                  value: /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/i,
+                  message: "Enter a valid email ID",
+                },
               }}
-              required
             />
             <FormInputText
               name={"password"}
               control={control}
               label={"Password"}
               type="password"
-              required
               rules={{
-                required: true,
+                required: { value: true, message: "This field can't be empty" },
                 minLength: { value: 8, message: "Enter a valid password" },
               }}
             />

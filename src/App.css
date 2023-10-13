@@ -13,5 +13,5 @@
 
 * {
   -ms-overflow-style: none;
-  scrollbar-width: none;
+  scrollbar-width: auto;
 }
