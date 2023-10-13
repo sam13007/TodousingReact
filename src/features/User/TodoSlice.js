@@ -46,6 +46,7 @@ const todoSlice = createSlice({
       state = updatedList;
       localStorage.setItem("tasks", JSON.stringify(state));
     },
+
     moveLeft: (state, action) => {
       const updatedList = state.map((task) => {
         if (task.id === action.payload) {
@@ -56,9 +57,30 @@ const todoSlice = createSlice({
       state = updatedList;
       localStorage.setItem("tasks", JSON.stringify(state));
     },
+
+    editTaskName: (state, action) => {
+      const { taskName, id, dueDate, priority } = action.payload;
+
+      const updatedList = state.map((task) => {
+        if (task.id === id) {
+          task.taskName = taskName;
+          task.dueDate = dueDate;
+          task.priority = priority;
+        }
+        return task;
+      });
+      state = updatedList;
+      localStorage.setItem("tasks", JSON.stringify(state));
+    },
   },
 });
 
-export const { addTask, dragState, deleteTask, moveRight, moveLeft } =
-  todoSlice.actions;
+export const {
+  addTask,
+  dragState,
+  deleteTask,
+  moveRight,
+  moveLeft,
+  editTaskName,
+} = todoSlice.actions;
 export default todoSlice.reducer;

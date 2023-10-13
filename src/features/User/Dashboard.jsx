@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { Button, Container } from "@mui/material";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import SettingsPowerIcon from "@mui/icons-material/SettingsPower";
+import DeleteIcon from "@mui/icons-material/Delete";
 import AddTaskForm from "../../components/AddTaskForm";
-import { addTask, dragState } from "./TodoSlice";
+import { addTask, dragState, deleteTask } from "./TodoSlice";
 import TaskCard from "../../components/TaskCard";
 import "./Dashboard.css";
 import dayjs from "dayjs";
@@ -49,12 +50,16 @@ function Dashboard() {
     if (!result.destination) return;
     const { source, destination } = result;
     if (source.droppableId !== destination.droppableId) {
-      dispatch(
-        dragState({
-          dragId: result.draggableId,
-          destination: parseInt(destination.droppableId),
-        })
-      );
+      if (destination.droppableId === "4") {
+        dispatch(deleteTask(result.draggableId));
+      } else {
+        dispatch(
+          dragState({
+            dragId: result.draggableId,
+            destination: parseInt(destination.droppableId),
+          })
+        );
+      }
     }
   };
 
@@ -124,7 +129,7 @@ function Dashboard() {
                       className="taskList"
                       ref={provided.innerRef}
                       {...provided.droppableProps}
-                      maxWidth="xl"
+                      maxWidth="sm"
                     >
                       <span>
                         {col.title} : {col.numberOfTask}
@@ -143,6 +148,28 @@ function Dashboard() {
               );
             })}
           </div>
+        </div>
+        <div>
+          <Droppable droppableId={"4"}>
+            {(provided) => (
+              <div
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+                style={{ position: "fixed", bottom: 10, right: 30 }}
+              >
+                <DeleteIcon
+                  fontSize="medium"
+                  sx={{
+                    backgroundColor: "red",
+                    color: "white",
+                    padding: "0.5rem",
+                    borderRadius: "50%",
+                  }}
+                />
+                {/* {provided.placeholder} */}
+              </div>
+            )}
+          </Droppable>
         </div>
       </DragDropContext>
     </div>

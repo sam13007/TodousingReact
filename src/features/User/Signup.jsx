@@ -93,6 +93,7 @@ function Signup() {
                 minLength: { value: 8, message: "Enter a valid password" },
               }}
             />
+
             <Button type="submit" variant="contained">
               Register
             </Button>

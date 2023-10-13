@@ -6,11 +6,13 @@
   padding: 0 15px;
   min-height: 106px;
   border-radius: 5px;
-  max-width: 311px;
+  max-width: 100%;
   /* background: ${({ isDragging }) =>
       isDragging ? "rgba(255, 59, 59, 0.15)" : "white"}; */
   background: white;
   margin-top: 15px;
+  gap: 2rem;
+  padding: 2rem;
 }
 
 .task-title {
@@ -37,7 +39,7 @@
 
 .task-dueDate {
   color: #404040a4;
-  font-size: 0.8em;
+  font-size: 1em;
 }
 
 .task-icons {
@@ -46,4 +48,9 @@
 
 .task-info:hover .task-icons {
   display: flex;
+}
+
+.task-editForm {
+  display: flex;
+  gap: 0.5rem;
 }

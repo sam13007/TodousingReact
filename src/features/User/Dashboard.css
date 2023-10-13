@@ -23,6 +23,6 @@
   flex: 1;
   height: 90%;
 
-  max-height: 90%;
+  max-height: 70vh;
   overflow-y: scroll;
 }
